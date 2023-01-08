@@ -1,7 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-
 driver = webdriver.Chrome()
 driver.get("https://www2.hm.com/hu_hu/productpage.1044156002.html")
 button = driver.find_element(By.CLASS_NAME, "trigger-button")
