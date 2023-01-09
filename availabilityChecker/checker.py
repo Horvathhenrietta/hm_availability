@@ -10,7 +10,8 @@ class AvailabilityChecker:
         self.driver_init()
 
         self.button_clicker()
-        self.checker_print_to_console(self.checker())
+        self.availability = self.checker()
+        self.checker_print_to_console(self.availability)
 
         self.driver.quit()
 
@@ -21,7 +22,7 @@ class AvailabilityChecker:
         button = self.driver.find_element(By.CLASS_NAME, "trigger-button")
         button.click()
 
-    def checker(self):
+    def checker(self) -> bool:
         size_options = self.driver.find_elements(By.CSS_SELECTOR, ".option span")
         for option in size_options:
             value = option.text
@@ -30,13 +31,14 @@ class AvailabilityChecker:
                 return True
         return False
 
-    def checker_print_to_console(self, available):
+    def checker_print_to_console(self, available: bool):
         if available:
             print(f'The selected size ({self.size}) is available.')
         else:
             print(f'The selected size ({self.size}) is not available.')
 
 
-check = AvailabilityChecker("1044156002", "32")
-check2 = AvailabilityChecker("1044156002", "38")
-check3 = AvailabilityChecker("1140505001", "XS")
+if __name__ == "__main__":
+    check = AvailabilityChecker("1044156002", "32")
+    check2 = AvailabilityChecker("1044156002", "38")
+    check3 = AvailabilityChecker("1140505001", "XS")
